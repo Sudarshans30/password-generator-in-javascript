@@ -28,77 +28,93 @@ function shuffle(array) {
     array[i] = t;
   }
 
+
   return array;
 }
- // function to create pseudo random numbers
-function getRandomnum(max){
-  return Math.floor(Math.random()* Math.floor(max));
 
+// Function to create random integer
+function getRandomnumb(max) {
+  return Math.floor(Math.random() * Math.floor(max));
 }
-var specialcharacters =[ '~','!','#','@','$','%','^','&','*','(',')','_','-','+','=','[',']','{','}','|',';',':','"','<','>',',','.','/','?','*'];
 
-var numbers = ['0','1','2','3','4','5','6','7','8','9'];
+var specialCharacters = [  "!",     "#",     "$",     "%",     "&",     "(",     ")",     "*",     "+",     "-",     ".",     "/",     ":",     ";",     "<",     "?",     "@",     "[",     "]",     "^",     "_",     "`",     "{",     "|",     "}",     "~",     "]", ];
+  var numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", ];
 
-var Uppercasealph = [ 'A','B','C','D' ,'E','F','G','H', 'I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+  var upperCase = [  "A",     "B",     "C",     "D",     "E",     "F",     "G",     "H",     "I",     "J",     "K",     "L",     "M",     "N",     "O",     "P",     "Q",     "R",     "S",     "T",     "U",     "V",     "W",     "X",     "Y",     "Z", ];
 
-var Lowercasealph =[ 'a', 'b', 'c', 'd', 'e','f','g','h','i','j', 'k','l','m', 'n' ,'o','p','q','r', 's', 't', 'u', 'v','w','x','y','z'] ;
-
+var lowerCase = [  "a",   "b",   "c",   "d",   "e",   "f",   "g",   "h",   "i",   "j",   "k",   "l",   "m",   "n",   "o",   "p",   "q",   "r",   "s",   "t",   "u",   "v",   "w",   "x",   "y",   "z",];
 
 
 
 
 function generatePassword() {
   var allgivennumbers = [];
-  var finalpassword = [];
-  var counter = 0;
-  characterlenght = prompt ("Please mention the lenght of your password (your pasword should be between 8 and 128 characters");
+  var finalPassword = [];
+  var Counter = 0;
 
-  if
-  (characterlenght > 8 && characterlenght < 128){
+  characterLength = prompt(
+    "How many characters long would you like your password to be? \nMinimum: 8 Digits \nMaximum: 128 Digits"
+  );
+
+  if (characterLength > 8 && characterLength < 128) {
   } else {
-    return " Please choose password lenght between 8 & 128 characters, Press the button to try again";
+    return "Please choose password length between 8 and 128 digits! \nPress the button to try again!";
   }
 
+  confirmSpecialCharacters = confirm (
+    "Would you like to have special characters as part of your password? \nExamples: !'*+,-./:;<=>?@^_`{|}~"
+  );
 
-  confirmspecialcharacters =  confirm ( "Would you like to include special characters in your password?");
-  if (confirmspecialcharacters) {
-    allgivennumbers= allgivennumbers.concat(confirmspecialcharacters);
-    //  concat() method is used joins two or more things.
-     var random = getRandomnum(specialcharacters.lenght);
-    finalpassword.push(specialcharacters[random]);
-    counter++ ;
+  if (confirmSpecialCharacters) {
+    allgivennumbers = allgivennumbers.concat(specialCharacters);
+     //  concat() method is used joins two or more things.
+    var random = getRandomnumb(specialCharacters.length);
+    finalPassword.push(specialCharacters[random]);
+    Counter++;
   }
 
-
-
-  confirmnumbers =  confirm ( "Would you like to include numbers in your password?");
-  if (confirmnumbers) {
+  confirmNumbers = confirm (
+    "Would you like to have numbers as part of your password?"
+  );
+  if (confirmNumbers) {
     allgivennumbers= allgivennumbers.concat(numbers);
-     var random = getRandomnum(numbers.lenght);
-    finalpassword.push(numbers[random]);
-     counter ++ ;
+    var random = getRandomnumb(numbers.length);
+    finalPassword.push(numbers[random]);
+    Counter++;
   }
 
-  confirmUppercasealph =  confirm ( "Would you like to include Uppercase in your password?");
-  if (confirmUppercasealph) {
-    allgivennumbers= allgivennumbers.concat(Uppercasealph);
-     var random = getRandomnum(Uppercasealph.lenght);
-    finalpassword.push(Uppercasealph[random]);
-    counter++ ;
+
+  confirmUpperCase = confirm (
+    "Would you like to have UPPERCASE letters as part of your password?"
+  );
+  if (confirmUpperCase) {
+    allgivennumbers = allgivennumbers.concat(upperCase);
+    var random = getRandomnumb(upperCase.length);
+    finalPassword.push(upperCase[random]);
+    Counter++;
+  }
+confirmLowerCase = confirm (
+    "Would you like to have lowercase letters as part of your password?"
+  );
+  if (confirmLowerCase) {
+    allgivennumbers = allgivennumbers.concat(lowerCase);
+    var random = getRandomnumb(lowerCase.length);
+    finalPassword.push(lowerCase[random]);
+    Counter++;
   }
 
-  confirmLowercasealph = confirm ("would you like to include Lowercase in your password?");
-  if (confirmLowercasealph) {
-    allgivennumbers = allgivennumbers.concat(Lowercasealph);
-    var random = getRandomnum(Lowercasealph.length);
-    finalpassword.push(Lowercasealph[random]);
-    counter++;
-  } 
+
+
+  // Final Password generation
+  for (i = 0 + Counter; i < characterLength; i++) {
+    var random = getRandomnumb(allgivennumbers.length);
+    finalPassword.push(allgivennumbers[random]);
   }
 
- 
-
-
-
+  
+  // Using the 'shuffle' function below regains true randomness for the password.
+  shuffle(finalPassword);
+  return finalPassword.join();
+}
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword) ;
+generateBtn.addEventListener("click", writePassword);
