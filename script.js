@@ -141,7 +141,7 @@ function generatePassword() {
     "How many characters long would you like your password to be? \nMinimum: 8 Digits \nMaximum: 128 Digits"
   );
 
-  if (characterLength > 8 && characterLength < 128) {
+  if (characterLength > 7 && characterLength < 129) {
   } else {
     return "Please choose password length between 8 and 128 digits! \nPress the button to try again!";
   }
@@ -191,7 +191,7 @@ confirmLowerCase = confirm (
 
 
   // Final Password generation
-  for (i = 0 + Counter; i < characterLength; i++) {
+  for (i = 0 + Counter; i < characterLength/2; i++) {
     var random = getRandomnumb(allgivennumbers.length);
     finalPassword.push(allgivennumbers[random]);
   }
