@@ -63,7 +63,7 @@ var specialCharacters = [  "!",
                             "|",     
                             "}",     
                             "~",     
-                            "]", ];
+                            "]" ];
   var numbers = ["0", 
                   "1", 
                   "2", 
@@ -102,7 +102,7 @@ var specialCharacters = [  "!",
                        "Y",     
                        "Z", ];
 
-var lowerCase = [  "a",   
+var LowerCase = [  "a",   
                     "b",   
                     "c",  
                     "d",  
@@ -153,8 +153,8 @@ function generatePassword() {
   if (confirmSpecialCharacters) {
     allgivennumbers = allgivennumbers.concat(specialCharacters);
      //  concat() method is used joins two or more things.
-    var random = getRandomnumb(specialCharacters.length);
-    finalPassword.push(specialCharacters[random]);
+    var rand = getRandomnumb(specialCharacters.length);
+    finalPassword.push(specialCharacters[rand]);
     Counter++;
   }
 
@@ -163,8 +163,8 @@ function generatePassword() {
   );
   if (confirmNumbers) {
     allgivennumbers= allgivennumbers.concat(numbers);
-    var random = getRandomnumb(numbers.length);
-    finalPassword.push(numbers[random]);
+    var rand = getRandomnumb(numbers.length);
+    finalPassword.push(numbers[rand]);
     Counter++;
   }
 
@@ -174,33 +174,32 @@ function generatePassword() {
   );
   if (confirmUpperCase) {
     allgivennumbers = allgivennumbers.concat(upperCase);
-    var random = getRandomnumb(upperCase.length);
-    finalPassword.push(upperCase[random]);
+    var rand = getRandomnumb(upperCase.length);
+    finalPassword.push(upperCase[rand]);
     Counter++;
   }
 confirmLowerCase = confirm (
     "Would you like to have lowercase letters as part of your password?"
   );
   if (confirmLowerCase) {
-    allgivennumbers = allgivennumbers.concat(lowerCase);
-    var random = getRandomnumb(lowerCase.length);
-    finalPassword.push(lowerCase[random]);
+    allgivennumbers = allgivennumbers.concat(LowerCase);
+    var rand = getRandomnumb(LowerCase.length);
+    finalPassword.push(LowerCase[rand]);
     Counter++;
-  }
+  };
 
 
 
   // Final Password generation
-  for (i = 0 + Counter; i < characterLength/2; i++);
-   {
-    var random = getRandomnumb(allgivennumbers.length);
-    finalPassword.push(allgivennumbers[random]);
+  for (i = 0 +Counter; i < characterLength; i++) {
+    var rand = getRandomnumb(allgivennumbers.length);
+    finalPassword.push(allgivennumbers[rand]);
   }
 
   
   // Using the 'shuffle' function below regains true randomness for the password.
   shuffle(finalPassword);
-  return finalPassword.join();
+  return finalPassword.join("");
 }
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
